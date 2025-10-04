@@ -3,9 +3,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Resume, Education, Experience, Skill
 
-class SignupForm(UserCreationForm):
+class SignUpForm(UserCreationForm):
     
-    email=forms.EmailFeild(required=True)
+    email=forms.EmailField(required=True)
     
     class meta:
         model:User
