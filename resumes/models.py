@@ -3,10 +3,6 @@ from django.contrib.auth.models import User
 
 
 class Resume(models.Model):
-    """
-    Main Resume model - stores basic information about the resume.
-    Each user can have multiple resumes.
-    """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=200)
     email = models.EmailField()
@@ -21,10 +17,6 @@ class Resume(models.Model):
 
 
 class Education(models.Model):
-    """
-    Education model - stores educational qualifications.
-    Each resume can have multiple education entries.
-    """
     resume = models.ForeignKey(
         Resume,
         on_delete=models.CASCADE,
@@ -41,10 +33,6 @@ class Education(models.Model):
 
 
 class Experience(models.Model):
-    """
-    Work Experience model - stores job history.
-    Each resume can have multiple work experience entries.
-    """
     resume = models.ForeignKey(
         Resume,
         on_delete=models.CASCADE,
@@ -61,10 +49,6 @@ class Experience(models.Model):
 
 
 class Skill(models.Model):
-    """
-    Skills model - stores technical and soft skills.
-    Each resume can have multiple skills.
-    """
     resume = models.ForeignKey(
         Resume,
         on_delete=models.CASCADE,

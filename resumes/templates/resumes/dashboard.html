@@ -1,0 +1,29 @@
+{% extends 'resumes/base.html' %}
+
+{% block title %}Dashboard - Resume Builder{% endblock %}
+
+{% block content %}
+<h1>📊 My Resumes Dashboard</h1>
+<a href="{% url 'create_resume' %}" class="btn">➕ Create New Resume</a>
+
+<div style="margin-top: 2rem;">
+    {% if resumes %}
+        {% for resume in resumes %}
+        <div class="resume-card">
+            <h3>{{ resume.full_name }}</h3>
+            <p>📧 {{ resume.email }} | 📱 {{ resume.phone }}</p>
+            <p><small>📅 Created: {{ resume.created_at|date:"M d, Y" }} | Last Updated: {{ resume.updated_at|date:"M d, Y" }}</small></p>
+            
+            <a href="{% url 'edit_resume' resume.id %}" class="btn">✏️ Edit</a>
+            <a href="{% url 'download_resume' resume.id %}" class="btn btn-success">⬇️ Download PDF</a>
+            <a href="{% url 'delete_resume' resume.id %}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this resume?')">🗑️ Delete</a>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div style="text-align: center; padding: 3rem; background: #f9f9f9; border-radius: 10px;">
+            <p style="font-size: 1.2rem; color: #666; margin-bottom: 1rem;">No resumes yet. Create your first resume!</p>
+            <a href="{% url 'create_resume' %}" class="btn">Create Resume</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
